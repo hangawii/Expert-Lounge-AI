@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Layout } from './components/Layout';
+import { AppLayout } from './components/AppLayout';
 import { LandingPage } from './components/LandingPage';
 import { SignInForm } from './components/SignInForm';
 import { ModeSelection } from './components/ModeSelection';
@@ -179,18 +179,18 @@ function App() {
 
   if (view === 'mode') {
       return (
-          <Layout 
+          <AppLayout 
             jdText={jdText} 
             onJdChange={(e) => setJdText(e.target.value)}
           >
               <ModeSelection onSelect={handleModeSelect} onBack={() => setView('landing')} />
-          </Layout>
+          </AppLayout>
       );
   }
 
   // --- MAIN APP VIEW ---
   return (
-    <Layout
+    <AppLayout
         jdText={jdText} 
         onJdChange={(e) => setJdText(e.target.value)}
     >
@@ -298,7 +298,7 @@ function App() {
              </div>
         </div>
       )}
-    </Layout>
+    </AppLayout>
   );
 }
 
