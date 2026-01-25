@@ -1,8 +1,6 @@
-import React from 'react';
-
-// This file is deprecated. The application entry point is 'Application.tsx'.
-// We explicitly remove all imports to prevent Vercel build errors related to stale paths.
+// This file is deprecated. The main entry point is Application.tsx.
+// We provide a dummy component here to satisfy build tools that may still look for App.tsx.
 
 export default function App() {
-  return <div />;
+  return null;
 }
