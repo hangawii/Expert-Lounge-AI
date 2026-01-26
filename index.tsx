@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// CSS is now loaded via <link> in index.html to avoid build-time resolution errors
-// import './index.css'; 
+import './index.css'; 
 import Application from './Application';
 
 // Expert Lounge AI Entry Point
