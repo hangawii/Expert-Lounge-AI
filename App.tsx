@@ -1,8 +1,7 @@
 import React from 'react';
 
-// DEPRECATED FILE: This component is intentionally empty to resolve build errors.
-// The real entry point is Application.tsx.
-
+// FIX: This file is kept as a placeholder to satisfy any legacy build configurations
+// that might be looking for App.tsx. The actual app logic is in Application.tsx.
 const App: React.FC = () => {
   return null;
 };
