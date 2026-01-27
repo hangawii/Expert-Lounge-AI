@@ -1,7 +1,7 @@
 import React from 'react';
 
-// FIX: This file is kept as a placeholder to satisfy any legacy build configurations
-// that might be looking for App.tsx. The actual app logic is in Application.tsx.
+// NOTE: The main application entry point has moved to Application.tsx.
+// This file is kept as a lightweight placeholder to satisfy legacy build paths.
 const App: React.FC = () => {
   return null;
 };
