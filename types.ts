@@ -7,6 +7,14 @@ export enum AnalysisMode {
 
 export type OutputLanguage = 'Korean' | 'English';
 
+export interface UserProfile {
+  name: string;
+  company: string;
+  department?: string;
+  email: string;
+  phone: string;
+}
+
 // Structured Output Schema Types
 export interface WorkExperience {
   company: string;

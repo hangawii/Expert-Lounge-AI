@@ -6,15 +6,7 @@ import { ModeSelection } from './components/ModeSelection';
 import { ResumeInput } from './components/ResumeInput';
 import { AnalysisDisplay } from './components/AnalysisDisplay';
 import { analyzeResume, parseRawResumeData } from './services/geminiService';
-import { AnalysisMode, ResumeData, ProcessingStats, ParsedResumeData, OutputLanguage } from './types';
-
-interface UserProfile {
-  name: string;
-  company: string;
-  department?: string;
-  email: string;
-  phone: string;
-}
+import { AnalysisMode, ResumeData, ProcessingStats, ParsedResumeData, OutputLanguage, UserProfile } from './types';
 
 function Application() {
   // Navigation State
@@ -163,26 +155,24 @@ function Application() {
 
   // --- EXIT SESSION LOGIC ---
   const handleExitSession = () => {
-    if (window.confirm("정말 세션을 종료하시겠습니까?\n\n[주의] 입력하신 모든 데이터와 분석 결과가 삭제되며 홈 화면으로 이동합니다.")) {
-      // 1. Reset Data State
-      setUser(null);
-      setInputText('');
-      setJdText('');
-      setData(null);
-      setStats(null);
-      setParsedFormData(null);
-      
-      // 2. Reset UI State
-      setIsLoading(false);
-      setIsParsing(false);
-      setParsingProgress(0);
-      setParsingTime(null);
-      setIsReportMode(false);
-      setError(null);
-      
-      // 3. Navigate to Landing
-      setView('landing');
-    }
+    // 1. Reset Data State
+    setUser(null);
+    setInputText('');
+    setJdText('');
+    setData(null);
+    setStats(null);
+    setParsedFormData(null);
+    
+    // 2. Reset UI State
+    setIsLoading(false);
+    setIsParsing(false);
+    setParsingProgress(0);
+    setParsingTime(null);
+    setIsReportMode(false);
+    setError(null);
+    
+    // 3. Navigate to Landing
+    setView('landing');
   };
 
   // --- VIEWS ---
