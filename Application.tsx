@@ -161,6 +161,30 @@ function Application() {
     setIsReportMode(false);
   };
 
+  // --- EXIT SESSION LOGIC ---
+  const handleExitSession = () => {
+    if (window.confirm("정말 세션을 종료하시겠습니까?\n\n[주의] 입력하신 모든 데이터와 분석 결과가 삭제되며 홈 화면으로 이동합니다.")) {
+      // 1. Reset Data State
+      setUser(null);
+      setInputText('');
+      setJdText('');
+      setData(null);
+      setStats(null);
+      setParsedFormData(null);
+      
+      // 2. Reset UI State
+      setIsLoading(false);
+      setIsParsing(false);
+      setParsingProgress(0);
+      setParsingTime(null);
+      setIsReportMode(false);
+      setError(null);
+      
+      // 3. Navigate to Landing
+      setView('landing');
+    }
+  };
+
   // --- VIEWS ---
 
   if (view === 'landing') {
@@ -215,7 +239,17 @@ function Application() {
                 <div className="text-white font-serif font-bold tracking-wide">
                     {selectedMode === AnalysisMode.EXECUTIVE_BRIEFING ? 'Executive Briefing' : 'Strategic Refinement'} Report
                 </div>
-                <div className="w-24"></div> 
+                {/* Exit Session Button (Report Mode) */}
+                <button 
+                    onClick={handleExitSession}
+                    disabled={isLoading}
+                    className="flex items-center gap-2 text-xs font-bold text-red-400 hover:text-red-300 uppercase tracking-widest border border-red-900/30 hover:border-red-500/50 bg-red-950/20 px-3 py-1.5 rounded-sm transition-all"
+                >
+                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    Exit Session
+                </button>
             </div>
 
             {/* Content Area */}
@@ -268,15 +302,30 @@ function Application() {
                     <div className="h-4 w-px bg-slate-800 mx-2"></div>
                     <span className="text-white font-bold font-serif text-lg">Input Intelligence Data</span>
                 </div>
-                {/* Parsing Timer Badge */}
-                {parsingTime !== null && (
-                    <div className="bg-slate-900 border border-brand-gold/30 rounded-full px-4 py-1.5 flex items-center animate-fade-in">
-                        <span className="w-1.5 h-1.5 bg-brand-gold rounded-full mr-2 animate-pulse"></span>
-                        <span className="text-xs text-brand-gold font-mono">
-                            Auto-Extracted in {(parsingTime / 1000).toFixed(2)}s
-                        </span>
-                    </div>
-                )}
+                
+                <div className="flex items-center gap-4">
+                    {/* Parsing Timer Badge */}
+                    {parsingTime !== null && (
+                        <div className="bg-slate-900 border border-brand-gold/30 rounded-full px-4 py-1.5 flex items-center animate-fade-in">
+                            <span className="w-1.5 h-1.5 bg-brand-gold rounded-full mr-2 animate-pulse"></span>
+                            <span className="text-xs text-brand-gold font-mono">
+                                Auto-Extracted in {(parsingTime / 1000).toFixed(2)}s
+                            </span>
+                        </div>
+                    )}
+                    
+                    {/* Exit Session Button (Input Mode) */}
+                    <button 
+                        onClick={handleExitSession}
+                        className="text-slate-500 hover:text-red-400 text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5 ml-2"
+                        title="Reset All Data and Return to Home"
+                    >
+                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        Exit
+                    </button>
+                </div>
              </div>
 
              {/* Main Input Container */}
